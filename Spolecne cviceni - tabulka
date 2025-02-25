@@ -1,0 +1,19 @@
+EVALUATE
+/*
+Nasim ukolem je:
+1. Vytvorit tabulku se vsemi hodnotami ze sloupcu data[lokalita],data[datum],data[srazky]
+2. Pridat sloupec rok
+3. Filtrovat tabulku na rok >=2000
+*/
+-- krok4: Vypocitani dvou novych sloupcu
+ADDCOLUMNS(
+-- krok3: Filtrovani tabulky
+FILTER(
+--krok2: Vypocet sloupce rok
+ADDCOLUMNS(
+-- krok1: Tabulka se vsemi unikatnimi hodnotami ze sloupcu data[lokalita], data[datum], data[srazky]
+ALL(data[lokalita],data[datum],data[srazky]),
+"rok",YEAR(data[datum])),
+[rok] > 2000),
+"maximalni_srazky",MAX(data[srazky]),
+"maximalni_srazky_lokalita",CALCULATE(MAX(data[srazky]),data[lokalita] = EARLIER(data[lokalita])))

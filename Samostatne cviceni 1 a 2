@@ -1,0 +1,47 @@
+DEFINE
+
+/*
+Samostatne cviceni, vizualy jsou pripraveny na strance: samostatne cviceni 1, resp. samostatne cviceni 2
+*/
+
+
+-- =============================== CVICENI 1 =======================================
+/*
+Vypocty ocekavaji vizual typu tabulka se sloupcem data[rok]
+*/
+MEASURE _miry[10 suma srazek] = SUM(data[srazky])
+MEASURE _miry[11 suma srazek mesic 1] = CALCULATE(SUM(data[srazky]),data[mesic] = 1)
+MEASURE _miry[12 suma srazek MOSNOV] = CALCULATE(SUM(data[srazky]),data[lokalita] = "MOSNOV")
+MEASURE _miry[13 prumerne srazky RUZYNE] = CALCULATE(AVERAGE(data[srazky]),data[lokalita] = "RUZYNE")
+MEASURE _miry[14 srazkove dny ruzyne] = CALCULATE(COUNT(data[datum]),data[srazky] > 0 && data[lokalita] = "RUZYNE")
+MEASURE _miry[15 prumerne srazky RUZYNE mesic 7] = CALCULATE(AVERAGE(data[srazky]),data[lokalita] = "RUZYNE" && data[mesic] = 7)
+
+-- =============================== KONEC CVICENI 1 =======================================
+
+/*
+Vypocty ocekavaji vizual typu tabulka se sloupcem [lokalita]
+*/
+
+-- =============================== SAMOSTATNE CVICENI 1 =======================================
+MEASURE _miry[cv1 maximalni srazky] = MAX(data[srazky])
+MEASURE _miry[cv2 maximalni srazky 2000] = CALCULATE(MAX(data[srazky]),data[rok] = 2000)
+MEASURE _miry[cv3 prumerne srazky mesic 7] = CALCULATE(AVERAGE(data[srazky]),data[mesic] = 7)
+MEASURE _miry[cv4 prumerne srazky rok 2000 mesic 7] = CALCULATE(AVERAGE(data[srazky]),data[rok] = 2000 && data[mesic] = 7)
+
+-- =============================== KONEC SAMOSTATNE CVICENI 1 =======================================
+
+/*
+Vypocty ocekavaji vizual typu tabulka se sloupcem [lokalita] a rok
+*/
+
+-- =============================== SAMOSTATNE CVICENI 2 =======================================
+
+MEASURE _miry[cv5 suma srazek] = SUM(data[srazky])
+MEASURE _miry[cv6 suma srazek lokalita ] = CALCULATE(SUM(data[srazky]),ALL(data[rok]))
+MEASURE _miry[cv7 podil srazek roku na celku] = SUM(data[srazky]) / CALCULATE(SUM(data[srazky]),ALL(data[rok]))
+MEASURE _miry[cv8 maximalni rok] = MAX(data[rok])
+MEASURE _miry[cv9 predchozi rok] = MAX(data[rok]) - 1
+MEASURE _miry[cv10 suma srazek predchozi rok] = CALCULATE(SUM(data[srazky]),data[rok] = MAX(data[rok]) - 1)
+
+-- =============================== KONEC SAMOSTATNE CVICENI 2 =======================================
+  

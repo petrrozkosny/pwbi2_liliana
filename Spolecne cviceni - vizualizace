@@ -1,0 +1,17 @@
+DEFINE
+
+/*
+Spolecne cviceni pro ukazku pouziti funkce CALCULATE() v jinych vizualech nez tabulka.
+Vizualy jsou pripraveny na strance: Cviceni: Uprava kontextu filtru - vizualizace
+*/
+
+
+-- =========== Spojnicovy graf mezirocniho porovnani srazek ==============
+MEASURE _miry[16 suma srazek] = SUM(data[srazky])
+MEASURE _miry[17 suma srazek predchozi rok] = CALCULATE(SUM(data[srazky]),data[rok] = SELECTEDVALUE(data[rok]) - 1)
+MEASURE _miry[18 nadpis grafu] = "Vývoj ročních srážek v lokalitě "&SELECTEDVALUE(data[lokalita])
+-- =========== KONEC Spojnicovy graf mezirocniho porovnani srazek ==============
+
+MEASURE _miry[19 suma srazek ytd] = CALCULATE(SUM(data[srazky]), data[mesic] <= SELECTEDVALUE(data[mesic]))
+MEASURE _miry[20 suma srazek ytd py] = CALCULATE(SUM(data[srazky]),data[mesic] <= SELECTEDVALUE(data[mesic]) && data[rok] = SELECTEDVALUE(data[rok]) - 1)
+MEASURE _miry[21 nadpis grafu] = "Meziroční porovnání kumulativních srážek v lokalitě "&SELECTEDVALUE(data[lokalita])&", roce "&SELECTEDVALUE(data[rok])

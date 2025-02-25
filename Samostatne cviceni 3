@@ -1,0 +1,7 @@
+/*
+Vypocty ocekavaji vizual typu tabulka se sloupcem lokalita, jsou pripraveny na strance Samostatne cviceni3
+*/
+
+DEFINE
+ MEASURE _miry[cv11 roky s maximalni_teplota > 37] = CONCATENATEX(CALCULATETABLE(DISTINCT(data[rok]),data[maximalni_teplota] > 37),data[rok],", ")
+ MEASURE _miry[cv12 datumy s maximalni_teplota >37] = CONCATENATEX(CALCULATETABLE(DISTINCT(data[datum]),data[maximalni_teplota] > 37),data[datum],", ")

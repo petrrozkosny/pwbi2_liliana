@@ -1,0 +1,22 @@
+DEFINE
+
+/*
+Samostatne cviceni na temata:
+- CALCULATE()
+- CALCULATETABLE()
+- time intelligence
+- prace s relacemi
+
+Vizualy jsou na strance Samostatne cviceni5
+*/
+-- =========
+
+-- ============ KARTA ===================
+MEASURE _miry[cv21 maximalni teplota] = MAX(data[maximalni_teplota])
+MEASURE _miry[cv22 datumy maximalni teploty] = CONCATENATEX(CALCULATETABLE(DISTINCT(data[datum]),data[maximalni_teplota] = MAX(data[maximalni_teplota])),data[datum],", ")
+
+-- ============ TABULKA ===================
+MEASURE _miry[cv21] = IF(MAX(data[maximalni_teplota]) = CALCULATE(MAX(data[maximalni_teplota]),ALL(dim_datumy[rok])),"TOMATO")
+MEASURE _miry[cv22] = "Přehled maximálních teplot v lokalitě "&SELECTEDVALUE(dim_geo[lokalita])
+
+-- ============ TABULKA ===================

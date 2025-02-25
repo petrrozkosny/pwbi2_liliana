@@ -1,0 +1,28 @@
+DEFINE
+
+/*
+Samostatne cviceni na temata:
+- CALCULATE()
+- CALCULATETABLE()
+- time intelligence
+- prace s relacemi
+
+Vizualy jsou na strance Samostatne cviceni4
+*/
+-- ============== KARTA ============================
+MEASURE _miry[cv13 suma srazek] = SUM(data[srazky])
+MEASURE _miry[cv14 suma srazek py] = CALCULATE(SUM(data[srazky]),DATEADD(dim_datumy[datum],-1,YEAR))
+MEASURE _miry[cv15 suma srazek yoy] = [cv13 suma srazek] - [cv14 suma srazek py]
+MEASURE _miry[cv16 barva pisma] = IF([cv15 suma srazek yoy] >0,"GREEN","TOMATO")
+-- ============== KARTA ============================
+
+-- ============== GRAF ============================
+
+MEASURE _miry[cv17 suma srazek ytd] = TOTALYTD(SUM(data[srazky]),dim_datumy[datum])
+MEASURE _miry[cv18 suma srazek ytd py] = TOTALYTD(SUM(data[srazky]),DATEADD(dim_datumy[datum],-1,YEAR))
+MEASURE _miry[cv19 nazev grafu] = "Vývoj kumulativních srážek v lokalitě: "&CONCATENATEX(DISTINCT(data[lokalita]),data[lokalita],", ")
+-- ============== GRAF ============================
+
+-- ============== KARTA  ============================
+MEASURE _miry[cv20 zeme lokalit] = CONCATENATEX(CALCULATETABLE(DISTINCT(dim_geo[zeme]),CROSSFILTER(data[lokalita],dim_geo[lokalita],Both)),dim_geo[zeme],", ")
+-- ============== KARTA  ============================

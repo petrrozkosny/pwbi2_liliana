@@ -1,0 +1,42 @@
+/*
+Vizual typu tabulka se sloupci
+dim_geo[zeme]
+dim_datumy[rok]
+dim_datumy[mesic]
+*/
+
+cv25 suma srazek = suma srazek ve vybrane zemi, roce, mesici
+
+cv26 max teplota ytd = max z maximalni_teplota kumulativne od zacatku roku ve vybrane zemi
+
+cv27 suma srazek mezirocne = suma srazek v dane zemi, mesici roce - suma srazek v dane zemi, mesici,
+predchozim roce
+
+cv28 pocet lokalit = pocet lokalit v dane zemi v danem mesici, roce, zemi
+
+cv29 lokality = zretezit za sebe nazvy lokalit v danem mesici, roce, zemi
+
+cv30 nejteplejsi lokality = lokality, ktere v dane zemi vykazaly ve vybranem roce, mesici maximum z maximalni_teplota
+
+cv31 podil srazek = suma srazek v dane zemi, roce, mesici deleno suma srazek v dane zemi a roce
+
+------------------------------------------------------------------------------------------------
+
+/*
+
+Vizual typu tabulka se sloupcem 
+data[lokalita]
+*/
+
+
+cv32 zeme lokality = zeme lokality (uvazujeme, ze kazda lokalita ma jedinou zemi)
+cv33 roky teplota nad 37 = vypis unikatnich roku, ve kterych maximum z maximalni_teplota v danem prevysila 37 (roky seradte vzestupne)
+cv34 maximalni datum lokalita = maximalni datum, ktere mame pro danou lokalitu
+cv35 maximalni teplota = maximalni teplota v dane lokalite
+cv36 maximalni teplota barva = Pokud je hodnota miry cv35 na danem radku nejvyssi hodnotou z celeho sloupce, tak barva pozadi "gold"
+
+/*
+Vizual typu 
+
+*/
+

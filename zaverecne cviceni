@@ -1,0 +1,23 @@
+1. Vizuál typu průřez nad dim_geo[lokalita]
+2. Vizuál typu spojnicový graf:
+	osa x: dim_datumy[rok]
+	osa y:
+		cv37 suma srazek
+		cv38 suma srazek predchozi rok
+
+3. Vizuál typu karta s hodnotou:
+	cv39 maximalni srazky a datumy = 
+	Maximální srážky v dané lokalitě, za touto hodnotou zřetězit
+	datumy, ve kterých k maximálním srážkám došlo
+
+4. Vizual typu karta s hodnotou:
+	cv40 pocet dnu pocasi = 
+	pocet dnu bez srazek / pocet dnu se srazkami
+	(nedelime, chceme zobrazit obe hodnoty, napr. 65 / 300)
+	Pozn. hodnoty null nás nezajímají, tj. porovnáváme datumy se srážkami 0 a datumy se srážkami > 0
+
+5. Vizuál typu tabulka se sloupci
+	dim_datumy[mesic]
+	cv41 maximalni srazky = maximalni srazky v danem mesici ve vybrane lokalite
+	cv42 maximalni srazky barva = pokud je hodnota miry 41 nejvyssi hodnotou z celeho sloupce,
+	tak barva pozadi "cyan"
